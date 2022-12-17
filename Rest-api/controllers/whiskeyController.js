@@ -9,35 +9,51 @@ function getWhiskeys(req, res, next) {
         .catch(next);
 }
 
+ function likedWhiskeys(req,res,next){
+    const { _id: userId } = req.user;
+    console.log(userId)
+    whiskeyModel.find({subscribe:userId})
+    .then(whiskeys=>res.json(whiskeys))
+    .catch(next);
+}
+
 function getWhiskey(req, res, next) {
     const { whiskeyId } = req.params;
 
     whiskeyModel.findById(whiskeyId)
         .populate({
-            path : 'posts',
-            populate : {
-              path : 'userId'
+            path: 'posts',
+            populate: {
+                path: 'userId'
             }
-          })
+        })
         .then(whiskey => res.json(whiskey))
         .catch(next);
 }
 
 function createWhiskey(req, res, next) {
-    const { whiskeyName, postText } = req.body;
+    const { whiskeyName, distilleryLocation, brand, img, description } = req.body;
     const { _id: userId } = req.user;
 
-    whiskeyModel.create({ whiskeyName, userId, subscribers: [userId] })
-        .then(whiskey => {
-            newPost(postText, userId, whiskey._id)
-                .then(([_, updatedWhiskey]) => res.status(200).json(updatedWhiskey))
-        })
+    whiskeyModel.create({
+        whiskeyName,
+        brand,
+        distilleryLocation: distilleryLocation,
+        img,
+        description: description,
+        userId
+    }).then(whiskey => res.status(200).json())
         .catch(next);
+
 }
 
-function subscribe(req, res, next) {
+ async function subscribe(req, res, next) {
     const whiskeyId = req.params.whiskeyId;
     const { _id: userId } = req.user;
+   const whiskey= await whiskeyModel.findById(whiskeyId);
+   whiskey.likes++;
+   await whiskey.save();
+  
     whiskeyModel.findByIdAndUpdate({ _id: whiskeyId }, { $addToSet: { subscribers: userId } }, { new: true })
         .then(updatedWhiskey => {
             res.status(200).json(updatedWhiskey)
@@ -50,4 +66,11 @@ module.exports = {
     createWhiskey,
     getWhiskey,
     subscribe,
+    likedWhiskeys
 }
+
+/*  .then(whiskey => {
+            newPost(description, userId, whiskey._id)
+                .then(([_, updatedWhiskey]) => res.status(200).json(updatedWhiskey))
+        })
+        .catch(next);*/

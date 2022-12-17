@@ -1,0 +1,42 @@
+<section class="profile-page">
+      <div class="profile-card">
+          <div class="top-section">
+              <i class="message fas fa-envelope"></i>
+              <i class="notif fas fa-bell"></i>
+              <div class="pic">
+                  <img
+                      src="https://freesvg.org/img/abstract-user-flat-4.png">
+              </div>
+              <div class="email">{{user?.email}}</div>
+          </div>
+  
+          <div class="bottom-section">
+              <div class="social-media">
+                  <i class="fab fa-facebook"></i>
+                  <i class="fab fa-twitter"></i>
+                  <i class="fab fa-instagram"></i>
+                  <i class="fas fa-link"></i>
+              </div>
+              <h2>Liked Whiskeys</h2>
+          </div>
+      </div>
+      <div class="wish-books">
+  
+          <!--If there are wished books-->
+      
+            <ng-container *ngFor="let whiskey of liked">
+                <div class="book">
+                      <div class="info-container-profile">
+                          <img src="{{whiskey.img}}">
+                      </div>
+                     <h2> <span class="wName">{{whiskey.whiskeyName}}</span></h2>
+                      <div class="details-btn">
+                          <a routerLink="/whiskey/{{whiskey._id}}" class="pBtn">Details</a>
+                      </div>
+                      </div>
+
+            </ng-container>
+          </div>
+  
+  
+  </section>

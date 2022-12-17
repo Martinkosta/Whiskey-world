@@ -1,0 +1,90 @@
+<section class="login-form-container">
+
+  <form #form="ngForm" class="login" (ngSubmit)="loginHandler(form)">
+      <h3>Login</h3>
+      <label for="email" ><span><i class="fas fa-envelope"></i></span></label>
+      <input type="email" name="email"   id="email" #emailInput="ngModel" ngModel required email placeholder="john.doe@gmail.com"
+      [ngClass]="{
+        'box': !(emailInput.touched &&(!!emailInput.errors?.['required'] || !!emailInput.errors?.['email'])),
+        'boxError':emailInput.touched &&(!!emailInput.errors?.['required'] || !!emailInput.errors?.['email'])
+      }">
+
+      <ng-container *ngIf="emailInput.touched">
+        <p class="error" *ngIf="emailInput.errors?.['required']">
+          <span class="error">Email is required!</span>
+        </p>
+        <p class="error" *ngIf="emailInput.errors?.['email']">
+          <span class="error">Email is not valid!</span>
+        </p>
+      </ng-container>
+
+
+      <label for="password" ><span><i class="fas fa-lock"></i></span></label>
+      <input type="password" name="password"  ngModel #passwordInput="ngModel" name="password" id="password" placeholder="******"
+      required [minlength]="5" placeholder="******"   [ngClass]="{
+        'box': !(passwordInput.touched &&(!!passwordInput.errors?.['required'] || !!passwordInput.errors?.['email'])),
+        'boxError':passwordInput.touched &&(!!passwordInput.errors?.['required'] || !!passwordInput.errors?.['email'])
+      }">
+
+      <ng-container *ngIf="passwordInput.touched">
+        <p class="error" *ngIf="passwordInput.errors?.['required']">
+         <span class="error">Password is required!</span>
+        </p>
+        <p class="error" *ngIf="passwordInput.errors?.['minlength']">
+          <span class="error">Password must be at least 5 characters!</span>
+        </p>
+      </ng-container>
+
+
+      <button class="btn" [disabled]="form.invalid">Login</button>
+
+      <p>Don't have an account ? <a routerLink="/auth/register">Create one</a></p>
+  </form>
+</section>
+
+  <!-- <section class="login-form-container">
+<form #form="ngForm" class="login" (ngSubmit)="loginHandler(form)">
+
+      <fieldset>
+        <h2>Login Form</h2>
+    
+        <p class="field field-icon">
+          <label for="email"><span><i class="fas fa-envelope"></i></span></label>
+          <input #emailInput="ngModel" class="input-error" ngModel required type="text" name="email" id="email"
+            placeholder="john.doe">
+        </p>
+        <ng-container *ngIf="emailInput.touched">
+          <p class="error" *ngIf="emailInput.errors?.['required']">
+            Email is required!
+          </p>
+          <p class="error" *ngIf="emailInput.errors?.['appEmailValidator']">
+            Email is not valid!
+          </p>
+        </ng-container>
+    
+        <p class="field field-icon">
+          <label for="password"><span><i class="fas fa-lock"></i></span></label>
+          <input type="password" ngModel #passwordInput="ngModel" name="password" id="password" placeholder="******"
+            required [minlength]="5">
+        </p>
+        <ng-container *ngIf="passwordInput.touched">
+          <p class="error" *ngIf="passwordInput.errors?.['required']">
+            Password is required!
+          </p>
+          <p class="error" *ngIf="passwordInput.errors?.['minlength']">
+            Password must be at least 5 characters!
+          </p>
+        </ng-container>
+    
+        <button [disabled]="form.invalid">Login</button>
+    
+        <p class="text-center">
+          Have an account?
+          <a routerLink="/auth/register">Register</a>
+        </p>
+    
+      </fieldset>
+    </form>
+  </section> -->
+
+

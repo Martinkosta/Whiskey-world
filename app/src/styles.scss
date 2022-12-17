@@ -13,7 +13,7 @@
 }
 
 html {
-  background-color: black;
+  background-color: white;
   font-size: 62.5%;
   overflow-x: hidden;
   scroll-padding-top: 5rem;
@@ -37,14 +37,14 @@ html::-webkit-scrollbar-thumb {
   padding: 0.9rem 3rem;
   border-radius: 0.5rem;
   color: #fff;
-  background: #27ae60;
+  background: rgb(235, 135, 5);
   font-size: 1.7rem;
   cursor: pointer;
   font-weight: 500;
 }
 
 .btn:hover {
-  background: #219150;
+  background: rgb(200, 116, 6);
 }
 
 @keyframes cssAnimation {

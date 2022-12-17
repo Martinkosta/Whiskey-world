@@ -1,26 +1,26 @@
 .header .header {
-      background:  rgb(235, 135, 5);
-    }
-    
-    .header .header .navbar {
-      text-align: center;
-    }
-    
-    .header .header .navbar a {
-      color: rgb(4, 3, 3);
-      display: inline-block;
-      padding: 1.2rem;
-      font-size: 1.7rem;
-    }
-    
-    .header .header .navbar a:hover {
-      background: #219150;
-    }
-    
-    .header .header .active {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-    }
+    background:  rgb(235, 135, 5);
+  }
+  
+  .header .header .navbar {
+    text-align: center;
+  }
+  
+  .header .header .navbar a {
+    color: rgb(4, 3, 3);
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+  }
+  
+  .header .header .navbar a:hover {
+    background: rgb(200, 116, 6);
+  }
+  
+  .header .header .active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }

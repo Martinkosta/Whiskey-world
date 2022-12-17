@@ -6,6 +6,12 @@ const whiskeySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    img: {
+        type: String,
+    },
+    brand:{
+      type:String
+    },
     subscribers: [{
         type: ObjectId,
         ref: "User"
@@ -14,10 +20,16 @@ const whiskeySchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"
     },
-    posts: [{
-        type: ObjectId,
-        ref: "Post"
-    }],
+    likes:{
+      type:Number,
+      default:0
+    },
+  description: {
+    type:String,
+  },
+  distilleryLocation: {
+    type:String,
+  },
 }, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('Whiskey', whiskeySchema);

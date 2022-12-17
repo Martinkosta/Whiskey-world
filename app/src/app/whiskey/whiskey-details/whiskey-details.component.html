@@ -1,0 +1,32 @@
+<section class="details-page">
+      <h1>Details</h1>
+      <article class="details-card">
+  
+          <article class="details-card-text">
+              <h2><span class="infoText">Name</span>:<br> {{whiskey?.whiskeyName}}</h2>
+
+              <div class="info">
+                <h3><span class="infoText">Brand</span> :<br> {{whiskey?.brand}}</h3>
+                <h3><span class="infoText">Distilary location</span>:<br> {{whiskey?.distilleryLocation}}</h3>
+                <h3><span class="infoText">Review</span>: <br>{{whiskey?.description}} </h3>
+                <h3><span class="infoText">Likes</span> : {{whiskey?.likes}}</h3>
+              </div>
+            
+              
+              <!-- If there is no registered user, do not display buttons-->
+             
+              
+              <ng-container *ngIf="isLoggedIn && !isLiked">
+               <button (click)="like()" class="btn-like">Like</button> 
+              </ng-container>
+
+       
+  
+          </article>
+  
+          <article class="details-card-image">
+              <img class="dImg" src={{whiskey?.img}}>
+          </article>
+  
+      </article>
+  </section>

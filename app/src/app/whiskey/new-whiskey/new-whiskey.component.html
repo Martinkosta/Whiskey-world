@@ -1,0 +1,88 @@
+<section class="create-form-container">
+
+      <form #form="ngForm" (ngSubmit)="newWhiskeyHandler(form)">
+          <h3>Create Whiskey Review</h3>
+          <!--Whisley name-->
+          <label>Name</label>
+          <input type="text" name="whiskeyName" #nameInput="ngModel" ngModel required [minlength]="5" id="whiskeyName" 
+          [ngClass]="{
+            'box': !(nameInput.touched &&(!!nameInput.errors?.['required'] || !!nameInput.errors?.['minlength'])),
+            'boxError':nameInput.touched &&(!!nameInput.errors?.['required'] || !!nameInput.errors?.['minlength'])
+          }">
+
+          <ng-container *ngIf="nameInput.touched">
+            <p class="error" *ngIf="nameInput.errors?.['required']">
+              <span class="error">Whiskey name is required.</span>
+            </p>
+            <p class="error" *ngIf="nameInput.errors?.['minlength']">
+           <span class="error">Theme name must be at least {{nameInput.errors?.['minlength']['requiredLength']}} characters long.</span>   
+            </p>
+          </ng-container>
+
+          <!--Brand name -->
+
+          <label> Brand name</label>
+          <input type="text" name="brandName"  id="brandName" #brandInput="ngModel" ngModel required [minlength]="2"
+          [ngClass]="{
+            'box': !(brandInput.touched &&(!!brandInput.errors?.['required'] || !!brandInput.errors?.['minlength'])),
+            'boxError':brandInput.touched &&(!!brandInput.errors?.['required'] || !!brandInput.errors?.['minlength'])
+          }">
+
+          <ng-container *ngIf="brandInput.touched">
+            <p class="error" *ngIf="brandInput.errors?.['required']">
+              <span class="error">Brand name is required.</span>
+            </p>
+            <p class="error" *ngIf="brandInput.errors?.['minlength']">
+           <span class="error">Brand name must be at least {{brandInput.errors?.['minlength']['requiredLength']}} characters long.</span>   
+            </p>
+          </ng-container>
+
+          <!--Distilary-->
+          <label> Distillery Location</label>
+          <input type="text" name="location"  id="location" #locationInput="ngModel" ngModel required 
+          [ngClass]="{
+            'box': !(locationInput.touched &&(!!locationInput.errors?.['required'] )),
+            'boxError':locationInput.touched &&(!!locationInput.errors?.['required'])
+          }">
+
+          <ng-container *ngIf="locationInput.touched">
+            <p class="error" *ngIf="locationInput.errors?.['required']">
+              <span class="error">Distillery Location is required.</span>
+            </p>
+          </ng-container>
+        
+          <!--img-->
+          <label>Image <link rel="stylesheet" href=""></label>
+          <input type="text" name="image" id="img" #imgInput="ngModel" ngModel required
+          [ngClass]="{
+            'box': !(imgInput.touched &&(!!imgInput.errors?.['required'] )),
+            'boxError':imgInput.touched &&(!!imgInput.errors?.['required'])
+          }">
+
+          <ng-container *ngIf="imgInput.touched">
+            <p class="error" *ngIf="imgInput.errors?.['required']">
+              <span class="error">Image link is required.</span>
+            </p>
+          </ng-container>
+
+          <!--Description-->
+          <label>Review</label>
+          <textarea   #textInput="ngModel" ngModel required [minlength]="10" name="descriptionText" id="descriptionText" rows="4" 
+          [ngClass]="{
+            'box': !(textInput.touched &&(!!textInput.errors?.['required'] || !!textInput.errors?.['minlength'])),
+            'boxError':textInput.touched &&(!!textInput.errors?.['required'] || !!textInput.errors?.['minlength'])
+          }"></textarea>
+          <ng-container *ngIf="textInput.touched">
+            <p class="error" *ngIf="textInput.errors?.['required']">
+              <span class="error">Review text is required.</span>
+            </p>
+            <p class="error" *ngIf="textInput.errors?.['minlength']">
+           <span class="error">The Review must be at least {{textInput.errors?.['minlength']['requiredLength']}} characters long.</span>   
+            </p>
+          </ng-container>
+
+
+         
+          <button class="btn" [disabled]="form.invalid">Create</button>
+      </form>
+  </section>

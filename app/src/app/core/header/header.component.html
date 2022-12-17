@@ -1,20 +1,19 @@
 <header class="header">
-
   <div class="header">
       <nav class="navbar">
-          <a href="/">Home</a>
-          <a href="/catalog">Catalog</a>
-          <!--Only for logged user-->
-        
-          <a href="/profile">Profile</a>
-          <a href="/create">Create Review</a>
-          <a href="/auth/logout">Logout</a>
-         
-          <!--Only for guest-->
-          <a href="/auth/login">Login</a>
-          <a href="/auth/register">Register</a>
-        
-      </nav>
-  </div>
-
-</header>
+       
+            <a routerLink="/">Home</a>
+            <a routerLink="/whiskey/catalog">Whiskeys</a>
+            <span *ngIf="isLoggedIn">
+              <a routerLink="/auth/profile">Profile</a>
+              <a routerLink="/whiskey/new">Publish Whiskey</a>
+              <a routerLink="/auth/logout">Logout</a>
+            </span>
+            <span *ngIf="!isLoggedIn">
+              <a routerLink="/auth/login">Login</a>
+              <a routerLink="/auth/register">Register</a>
+            </span>
+      </nav>  
+    </div>  
+    
+   </header>
